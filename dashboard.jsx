@@ -41,6 +41,7 @@ const Dashboard = ({ onLogout }) => {
     nacionalidad: "", domicilio: "", barrio: "", cod_postal: ""
   });
 
+  
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -128,7 +129,7 @@ const Dashboard = ({ onLogout }) => {
           apellido_tutor: "", nombre_tutor: "", telefono_tutor: "", telefono_tutor2: "", curso: "",
           establecimiento_anio_anterior: "", DNI_tutor: "", cuit_tutor: "", enfermedad_cronica: "", cual_enfermedad: "",
           medicacion: "", cual_medicacion: "", correoElectronico: "", fecha_nacimiento: "", edad: "", lugar_nacimiento: "",
-          nacionalidad: "", domicilio: "", barrio: "", cod_postal: "", materias_adeuda: "", adeuda_materias: "", quien_aprobo: ""
+          nacionalidad: "", domicilio: "", barrio: "", cod_postal: ""
         });
       })
       .catch(error => {
@@ -183,6 +184,8 @@ const Dashboard = ({ onLogout }) => {
       [key]: value,
     }));
   };
+
+
   const isModalVisible = showPopup && selectedData !== null;
   return (
     <div className="container-fluid mt-1-">
@@ -200,7 +203,7 @@ const Dashboard = ({ onLogout }) => {
       {activeSection === "addData" && (
         <div>
           <div className="row g-0">
-            {Object.keys(newData).map((key, index) => (
+            {Object.keys(newData).slice(0, 5).map((key, index) => (
               <div className={`col-md-2 p-1`} key={key} style={{ display: "inline-block", width: "11%" }}>
                 {["tiene_hermanos", "enfermedad_cronica", "medicacion", "materias_adeuda"].includes(key) ? (
                   <select className="form-control" name={key} value={newData[key]} onChange={handleNewDataChange}>
